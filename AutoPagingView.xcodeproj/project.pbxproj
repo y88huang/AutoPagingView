@@ -15,6 +15,8 @@
 		69E208CA1A830ED1005453A1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69E208C81A830ED1005453A1 /* LaunchScreen.xib */; };
 		69E208D61A830ED1005453A1 /* AutoPagingViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E208D51A830ED1005453A1 /* AutoPagingViewTests.m */; };
 		69E208E11A831058005453A1 /* AutoPagingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E208E01A831058005453A1 /* AutoPagingView.m */; };
+		69E208E41A84211B005453A1 /* AutoPagingViewPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E208E31A84211B005453A1 /* AutoPagingViewPage.m */; };
+		69E208E71A8424E3005453A1 /* TestPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E208E61A8424E3005453A1 /* TestPage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,10 @@
 		69E208D51A830ED1005453A1 /* AutoPagingViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoPagingViewTests.m; sourceTree = "<group>"; };
 		69E208DF1A831058005453A1 /* AutoPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoPagingView.h; sourceTree = "<group>"; };
 		69E208E01A831058005453A1 /* AutoPagingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoPagingView.m; sourceTree = "<group>"; };
+		69E208E21A84211B005453A1 /* AutoPagingViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoPagingViewPage.h; sourceTree = "<group>"; };
+		69E208E31A84211B005453A1 /* AutoPagingViewPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoPagingViewPage.m; sourceTree = "<group>"; };
+		69E208E51A8424E3005453A1 /* TestPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPage.h; sourceTree = "<group>"; };
+		69E208E61A8424E3005453A1 /* TestPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,10 @@
 				69E208BE1A830ED1005453A1 /* AppDelegate.m */,
 				69E208C01A830ED1005453A1 /* ViewController.h */,
 				69E208C11A830ED1005453A1 /* ViewController.m */,
+				69E208E51A8424E3005453A1 /* TestPage.h */,
+				69E208E61A8424E3005453A1 /* TestPage.m */,
+				69E208E21A84211B005453A1 /* AutoPagingViewPage.h */,
+				69E208E31A84211B005453A1 /* AutoPagingViewPage.m */,
 				69E208DF1A831058005453A1 /* AutoPagingView.h */,
 				69E208E01A831058005453A1 /* AutoPagingView.m */,
 				69E208C31A830ED1005453A1 /* Main.storyboard */,
@@ -224,7 +234,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69E208E41A84211B005453A1 /* AutoPagingViewPage.m in Sources */,
 				69E208C21A830ED1005453A1 /* ViewController.m in Sources */,
+				69E208E71A8424E3005453A1 /* TestPage.m in Sources */,
 				69E208E11A831058005453A1 /* AutoPagingView.m in Sources */,
 				69E208BF1A830ED1005453A1 /* AppDelegate.m in Sources */,
 				69E208BC1A830ED1005453A1 /* main.m in Sources */,
@@ -420,6 +432,7 @@
 				69E208DB1A830ED1005453A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		69E208DC1A830ED1005453A1 /* Build configuration list for PBXNativeTarget "AutoPagingViewTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +441,7 @@
 				69E208DE1A830ED1005453A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

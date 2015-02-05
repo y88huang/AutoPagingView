@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "AutoPagingView.h"
+#import "TestPage.h"
+
 @interface ViewController ()<AutoPagingViewDelegate>
 @property (nonatomic, strong) AutoPagingView *pageView;
 @end
@@ -17,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.pageView = [[AutoPagingView alloc] initWithFrame:self.view.bounds];
+    [self.pageView registerClass: [TestPage class] forIdentifier: @"testIdentifier"];
     [self.view addSubview:self.pageView];
 }
 
@@ -27,14 +30,12 @@
     [self.pageView reloadData];
 }
 
-- (UIView *)pagingView:(AutoPagingView *)pagingView pageforIndex:(NSUInteger)index
+- (AutoPagingViewPage *)pagingView:(AutoPagingView *)pagingView pageforIndex:(NSUInteger)index
 {
-    UIView *container = [pagingView dequeueReusableView];
-    if (!container){
-        container = [[UIView alloc] init];
-    }
-    container.backgroundColor = index % 2 == 0 ? [UIColor blueColor] : [UIColor redColor];
-    return container;
+    TestPage *page = (TestPage *)[pagingView dequeueReusableViewWithIdentifier:@"testIdentifier"];
+    page.backgroundColor = index % 2 == 0 ? [UIColor redColor] : [UIColor greenColor];
+    [page setDisplayTime:3];
+    return page;
 }
 
 - (NSTimeInterval)playTimeForPagingView:(AutoPagingView *)pagingView atIndex:(NSUInteger)index
@@ -51,4 +52,5 @@
 {
     [pagingView removeFromSuperview];
 }
+
 @end
