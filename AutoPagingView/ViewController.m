@@ -7,8 +7,8 @@
 //
 
 #import "ViewController.h"
-
-@interface ViewController ()
+#import "AutoPagingView.h"
+@interface ViewController ()<AutoPagingViewDelegate>
 
 @end
 
@@ -16,12 +16,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    AutoPagingView *view = [[AutoPagingView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:view];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (UIView *)pagingView:(AutoPagingView *)pagingView forIndex:(NSUInteger)index
+{
+    UIView *container = [pagingView dequeueReusableView];
+    if (!container){
+        container = [[UIView alloc] init];
+    }
+    container.backgroundColor = index % 2 == 0 ? [UIColor blueColor] : [UIColor redColor];
+    return container;
 }
 
+- (NSTimeInterval)playTimeForPagingView:(AutoPagingView *)pagingView forIndexPath:(NSIndexPath *)indexPath
+{
+    return 3;
+}
 @end

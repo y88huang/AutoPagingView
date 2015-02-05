@@ -14,6 +14,7 @@
 		69E208C71A830ED1005453A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69E208C61A830ED1005453A1 /* Images.xcassets */; };
 		69E208CA1A830ED1005453A1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69E208C81A830ED1005453A1 /* LaunchScreen.xib */; };
 		69E208D61A830ED1005453A1 /* AutoPagingViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E208D51A830ED1005453A1 /* AutoPagingViewTests.m */; };
+		69E208E11A831058005453A1 /* AutoPagingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69E208E01A831058005453A1 /* AutoPagingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		69E208CF1A830ED1005453A1 /* AutoPagingViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoPagingViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69E208D41A830ED1005453A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69E208D51A830ED1005453A1 /* AutoPagingViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoPagingViewTests.m; sourceTree = "<group>"; };
+		69E208DF1A831058005453A1 /* AutoPagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoPagingView.h; sourceTree = "<group>"; };
+		69E208E01A831058005453A1 /* AutoPagingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoPagingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 				69E208BE1A830ED1005453A1 /* AppDelegate.m */,
 				69E208C01A830ED1005453A1 /* ViewController.h */,
 				69E208C11A830ED1005453A1 /* ViewController.m */,
+				69E208DF1A831058005453A1 /* AutoPagingView.h */,
+				69E208E01A831058005453A1 /* AutoPagingView.m */,
 				69E208C31A830ED1005453A1 /* Main.storyboard */,
 				69E208C61A830ED1005453A1 /* Images.xcassets */,
 				69E208C81A830ED1005453A1 /* LaunchScreen.xib */,
@@ -220,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69E208C21A830ED1005453A1 /* ViewController.m in Sources */,
+				69E208E11A831058005453A1 /* AutoPagingView.m in Sources */,
 				69E208BF1A830ED1005453A1 /* AppDelegate.m in Sources */,
 				69E208BC1A830ED1005453A1 /* main.m in Sources */,
 			);
