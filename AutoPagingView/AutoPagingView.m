@@ -34,17 +34,21 @@
     }
     UIView *view = [self.delegate pagingView:self forIndex:0];
     [reusablePool addObject:view];
-    NSTimeInterval playtime = [self.delegate playTimeForPagingView:self forIndex:currentIndex];
     [self addSubview:view];
+    [self pageToNextView];
 }
 
 - (void)pageToNextView
 {
+    currentIndex++;
     UIView *view = self.subviews[0];
     [view removeFromSuperview];
-    UIView *nextPage = [reusablePool lastObject];
+    UIView *nextPage = [self.delegate pagingView:self forIndex:currentIndex];
     [self reuseView: view];
     [self addSubview:nextPage];
+    nextPage.frame = self.bounds;
+    NSTimer *timer = [NSTimer timerWithTimeInterval:[self.delegate playTimeForPagingView:self forIndex:0] target:self selector:@selector(pageToNextView) userInfo:nil repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)reuseView:(UIView *)view

@@ -18,7 +18,7 @@
 @end
 
 @interface AutoPagingView : UIView
-
+- (void)reloadData;
 - (UIView *)dequeueReusableView;
 @property (weak, nonatomic) id <AutoPagingViewDelegate> delegate;
 @end

@@ -9,17 +9,23 @@
 #import "ViewController.h"
 #import "AutoPagingView.h"
 @interface ViewController ()<AutoPagingViewDelegate>
-
+@property (nonatomic, strong) AutoPagingView *pageView;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    AutoPagingView *view = [[AutoPagingView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:view];
+    self.pageView = [[AutoPagingView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:self.pageView];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.pageView.delegate = self;
+    [self.pageView reloadData];
+}
 - (UIView *)pagingView:(AutoPagingView *)pagingView forIndex:(NSUInteger)index
 {
     UIView *container = [pagingView dequeueReusableView];
@@ -30,7 +36,7 @@
     return container;
 }
 
-- (NSTimeInterval)playTimeForPagingView:(AutoPagingView *)pagingView forIndexPath:(NSIndexPath *)indexPath
+- (NSTimeInterval)playTimeForPagingView:(AutoPagingView *)pagingView forIndex:(NSUInteger)index
 {
     return 3;
 }
