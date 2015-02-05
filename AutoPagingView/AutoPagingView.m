@@ -32,22 +32,29 @@
     {
         [view removeFromSuperview];
     }
-    UIView *view = [self.delegate pagingView:self forIndex:0];
-    [reusablePool addObject:view];
-    [self addSubview:view];
+    UIView *page= [self.delegate pagingView:self pageforIndex:0];
+    [reusablePool addObject:page];
+    [self addSubview:page];
     [self pageToNextView];
 }
 
 - (void)pageToNextView
 {
+    NSLog(@"Reusable pool size %lu",(unsigned long)reusablePool.count);
+    if (currentIndex >= [self.delegate numberOfPagesInPagingView:self])
+    {
+        [self.delegate didFinishPlayingPaingView:self];
+        return;
+    }
     currentIndex++;
-    UIView *view = self.subviews[0];
-    [view removeFromSuperview];
-    UIView *nextPage = [self.delegate pagingView:self forIndex:currentIndex];
-    [self reuseView: view];
+    UIView *page = [self.subviews lastObject];
+    [page removeFromSuperview];
+    UIView *nextPage = [self.delegate pagingView:self pageforIndex:currentIndex];
+    [self reuseView: page];
+    
     [self addSubview:nextPage];
     nextPage.frame = self.bounds;
-    NSTimer *timer = [NSTimer timerWithTimeInterval:[self.delegate playTimeForPagingView:self forIndex:0] target:self selector:@selector(pageToNextView) userInfo:nil repeats:NO];
+    NSTimer *timer = [NSTimer timerWithTimeInterval:[self.delegate playTimeForPagingView:self atIndex:0] target:self selector:@selector(pageToNextView) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 

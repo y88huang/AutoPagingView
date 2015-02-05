@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class AutoPagingView;
+
 @protocol AutoPagingViewDelegate <NSObject>
 
-- (NSInteger)numberOfElementsInView:(AutoPagingView *)view;
-- (UIView *)pagingView:(AutoPagingView *)pagingView forIndex:(NSUInteger)index;
-- (NSTimeInterval)playTimeForPagingView:(AutoPagingView *)pagingView forIndex:(NSUInteger)index;
+@required
+- (NSUInteger)numberOfPagesInPagingView:(AutoPagingView *)pagingView;
+- (UIView *)pagingView:(AutoPagingView *)pagingView pageforIndex:(NSUInteger)index;
+- (NSTimeInterval)playTimeForPagingView:(AutoPagingView *)pagingView atIndex:(NSUInteger)index;
+- (void)didFinishPlayingPaingView:(AutoPagingView *)pagingView;
 
 @end
 

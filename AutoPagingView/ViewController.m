@@ -26,7 +26,8 @@
     self.pageView.delegate = self;
     [self.pageView reloadData];
 }
-- (UIView *)pagingView:(AutoPagingView *)pagingView forIndex:(NSUInteger)index
+
+- (UIView *)pagingView:(AutoPagingView *)pagingView pageforIndex:(NSUInteger)index
 {
     UIView *container = [pagingView dequeueReusableView];
     if (!container){
@@ -36,8 +37,18 @@
     return container;
 }
 
-- (NSTimeInterval)playTimeForPagingView:(AutoPagingView *)pagingView forIndex:(NSUInteger)index
+- (NSTimeInterval)playTimeForPagingView:(AutoPagingView *)pagingView atIndex:(NSUInteger)index
 {
     return 3;
+}
+
+- (NSUInteger)numberOfPagesInPagingView:(AutoPagingView *)view
+{
+    return 4;
+}
+
+- (void)didFinishPlayingPaingView:(AutoPagingView *)pagingView
+{
+    [pagingView removeFromSuperview];
 }
 @end
