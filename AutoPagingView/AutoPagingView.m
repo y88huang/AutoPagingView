@@ -94,7 +94,8 @@
     {
         [view removeFromSuperview];
     }
-    AutoPagingViewPage *page= [self.delegate pagingView:self pageforIndex:0];
+    AutoPagingViewPage *page= [self.delegate pagingView:self pageforIndex: _currentPageIndex];
+    [page prepareForReuse];
     [_reusablePool reuseObject:page withIdentifier:page.identifier];
     [self addSubview:page];
     [self pageToNextView];

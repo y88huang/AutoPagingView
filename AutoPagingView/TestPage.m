@@ -19,6 +19,8 @@
     if (self)
     {
         self.timeLabel = [[UILabel alloc] initWithFrame:frame];
+        self.timeLabel.textAlignment = NSTextAlignmentCenter;
+        self.timeLabel.font = [UIFont boldSystemFontOfSize:30.0f];
         [self addSubview: self.timeLabel];
     }
     return self;
