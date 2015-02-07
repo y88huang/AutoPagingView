@@ -13,6 +13,10 @@
 
 @protocol AutoPagingViewDelegate <NSObject>
 
+@optional
+
+- (void)didSelectAutoPagingView:(AutoPagingView *)pagingView atIndex:(NSUInteger)index;
+
 @required
 - (NSUInteger)numberOfPagesInPagingView:(AutoPagingView *)pagingView;
 - (AutoPagingViewPage *)pagingView:(AutoPagingView *)pagingView pageforIndex:(NSUInteger)index;
@@ -27,5 +31,6 @@
 - (void)registerClass:(Class)aClass forIdentifier:(NSString *)identifier;
 - (AutoPagingViewPage *)dequeueReusableViewWithIdentifier:(NSString *)identifier;
 @property (weak, nonatomic) id <AutoPagingViewDelegate> delegate;
+@property (nonatomic) NSUInteger currentPageIndex;
 
 @end

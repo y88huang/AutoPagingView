@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSMutableDictionary *pool;
 @property (strong, nonatomic) NSMutableDictionary *nameStorage;
+@property (weak, nonatomic) id delegate;
 
 - (id)objectWithIdentifier:(NSString *)identifier;
 - (void)reuseObject:(id)Object withIdentifier:(NSString *)identifier;
@@ -28,6 +29,15 @@
     {
         self.pool = [[NSMutableDictionary alloc] initWithCapacity:2];
         self.nameStorage = [[NSMutableDictionary alloc] initWithCapacity:2];
+    }
+    return self;
+}
+
+- (id)initWithDelegate:(id)delegate
+{
+    self = [self init];
+    if (self){
+        self.delegate = delegate;
     }
     return self;
 }
@@ -58,6 +68,8 @@
     id object = [array lastObject];
     if (!object) {
         object = [[classType alloc] initWithIdentifier:identifier];
+        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.delegate action:@selector(pagePressed:)];
+        [object addGestureRecognizer:recognizer];
     }else{
         [array removeObject:object];
     }
@@ -70,10 +82,14 @@
 }
 
 @end
-@implementation AutoPagingView{
-    NSUInteger _currentPageIndex;
-    ReusePool *_reusablePool;
-}
+
+@interface AutoPagingView ()
+
+@property (nonatomic, strong) ReusePool *reusablePool;
+@property (nonatomic, strong) NSTimer *timer;
+@end
+
+@implementation AutoPagingView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -82,7 +98,7 @@
     {
         self.backgroundColor = [UIColor orangeColor];
         _currentPageIndex = 0;
-        _reusablePool = [[ReusePool alloc] init];
+        _reusablePool = [[ReusePool alloc] initWithDelegate:self];
     }
     return self;
 }
@@ -101,16 +117,16 @@
     [self pageToNextView];
 }
 
-- (void)pageToNextView
+- (void)setCurrentPageIndex:(NSUInteger)currentPageIndex
 {
-    NSLog(@"Reusable pool size %lu",(unsigned long)_reusablePool.pool.count);
-    NSLog(@"Printing Reusable Pool %@", _reusablePool.pool);
+    _currentPageIndex = currentPageIndex;
+//    NSLog(@"Reusable pool size %lu",(unsigned long)_reusablePool.pool.count);
+//    NSLog(@"Printing Reusable Pool %@", _reusablePool.pool);
     if (_currentPageIndex >= [self.delegate numberOfPagesInPagingView:self])
     {
         [self.delegate didFinishPlayingPaingView:self];
         return;
     }
-    _currentPageIndex++;
     AutoPagingViewPage *page = [self.subviews lastObject];
     [page removeFromSuperview];
     UIView *nextPage = [self.delegate pagingView:self pageforIndex:_currentPageIndex];
@@ -119,8 +135,15 @@
     
     [self addSubview:nextPage];
     nextPage.frame = self.bounds;
-    NSTimer *timer = [NSTimer timerWithTimeInterval:[self.delegate playTimeForPagingView:self atIndex:0] target:self selector:@selector(pageToNextView) userInfo:nil repeats:NO];
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    [self.timer invalidate];
+    self.timer = nil;
+    self.timer = [NSTimer timerWithTimeInterval:[self.delegate playTimeForPagingView:self atIndex:currentPageIndex] target:self selector:@selector(pageToNextView) userInfo:nil repeats:NO];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)pageToNextView
+{
+    self.currentPageIndex++;
 }
 
 - (void)reusePage:(AutoPagingViewPage *)page
@@ -138,6 +161,16 @@
 - (void)registerClass:(Class)aClass forIdentifier:(NSString *)identifier
 {
     [_reusablePool registerClassName:aClass forIdentifier:identifier];
+}
+
+- (void)pagePressed:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(didSelectAutoPagingView:atIndex:)])
+    {
+        [self.delegate didSelectAutoPagingView:self atIndex:_currentPageIndex];
+        return;
+    }
+    return;
 }
 
 @end

@@ -48,6 +48,11 @@
     return 4;
 }
 
+- (void)didSelectAutoPagingView:(AutoPagingView *)pagingView atIndex:(NSUInteger)index
+{
+    pagingView.currentPageIndex++;
+}
+
 - (void)didFinishPlayingPaingView:(AutoPagingView *)pagingView
 {
     [pagingView removeFromSuperview];
