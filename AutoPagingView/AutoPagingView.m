@@ -120,8 +120,6 @@
 - (void)setCurrentPageIndex:(NSUInteger)currentPageIndex
 {
     _currentPageIndex = currentPageIndex;
-//    NSLog(@"Reusable pool size %lu",(unsigned long)_reusablePool.pool.count);
-//    NSLog(@"Printing Reusable Pool %@", _reusablePool.pool);
     if (_currentPageIndex >= [self.delegate numberOfPagesInPagingView:self])
     {
         [self.delegate didFinishPlayingPaingView:self];
