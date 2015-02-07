@@ -127,7 +127,7 @@
     }
     AutoPagingViewPage *page = [self.subviews lastObject];
     [page removeFromSuperview];
-    UIView *nextPage = [self.delegate pagingView:self pageforIndex:_currentPageIndex];
+    AutoPagingViewPage *nextPage = [self.delegate pagingView:self pageforIndex:_currentPageIndex];
     
     [self reusePage:page];
     

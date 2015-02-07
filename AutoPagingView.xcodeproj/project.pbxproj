@@ -69,6 +69,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		69B582201A86D4B900EDA0A9 /* AutoPagingView */ = {
+			isa = PBXGroup;
+			children = (
+				69E208DF1A831058005453A1 /* AutoPagingView.h */,
+				69E208E01A831058005453A1 /* AutoPagingView.m */,
+				69E208E21A84211B005453A1 /* AutoPagingViewPage.h */,
+				69E208E31A84211B005453A1 /* AutoPagingViewPage.m */,
+			);
+			name = AutoPagingView;
+			sourceTree = "<group>";
+		};
 		69E208AD1A830ED1005453A1 = {
 			isa = PBXGroup;
 			children = (
@@ -96,10 +107,7 @@
 				69E208C11A830ED1005453A1 /* ViewController.m */,
 				69E208E51A8424E3005453A1 /* TestPage.h */,
 				69E208E61A8424E3005453A1 /* TestPage.m */,
-				69E208E21A84211B005453A1 /* AutoPagingViewPage.h */,
-				69E208E31A84211B005453A1 /* AutoPagingViewPage.m */,
-				69E208DF1A831058005453A1 /* AutoPagingView.h */,
-				69E208E01A831058005453A1 /* AutoPagingView.m */,
+				69B582201A86D4B900EDA0A9 /* AutoPagingView */,
 				69E208C31A830ED1005453A1 /* Main.storyboard */,
 				69E208C61A830ED1005453A1 /* Images.xcassets */,
 				69E208C81A830ED1005453A1 /* LaunchScreen.xib */,
