@@ -83,10 +83,13 @@
 
 @end
 
-@interface AutoPagingView ()
+@interface AutoPagingView (){
+    NSUInteger _numberOfPagesInView;
+}
 
 @property (nonatomic, strong) ReusePool *reusablePool;
 @property (nonatomic, strong) NSTimer *timer;
+
 @end
 
 @implementation AutoPagingView
@@ -96,8 +99,9 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        self.backgroundColor = [UIColor orangeColor];
+        self.backgroundColor = [UIColor whiteColor];
         _currentPageIndex = 0;
+        _numberOfPagesInView = 0;
         _reusablePool = [[ReusePool alloc] initWithDelegate:self];
     }
     return self;
@@ -105,22 +109,21 @@
 
 - (void)reloadData
 {
-    _currentPageIndex = 0;
     for (UIView *view in self.subviews)
     {
         [view removeFromSuperview];
     }
+    
+    _numberOfPagesInView = [self.delegate numberOfPagesInPagingView:self];
     AutoPagingViewPage *page= [self.delegate pagingView:self pageforIndex: _currentPageIndex];
-    [page prepareForReuse];
-    [_reusablePool reuseObject:page withIdentifier:page.identifier];
     [self addSubview:page];
-    [self pageToNextView];
+    self.currentPageIndex = _currentPageIndex < _numberOfPagesInView ? _currentPageIndex : 0;
 }
 
 - (void)setCurrentPageIndex:(NSUInteger)currentPageIndex
 {
     _currentPageIndex = currentPageIndex;
-    if (_currentPageIndex >= [self.delegate numberOfPagesInPagingView:self])
+    if (_currentPageIndex >= _numberOfPagesInView)
     {
         [self.delegate didFinishPlayingPaingView:self];
         return;
@@ -146,6 +149,7 @@
 
 - (void)reusePage:(AutoPagingViewPage *)page
 {
+    [page prepareForReuse];
     [_reusablePool reuseObject:page withIdentifier:page.identifier];
 }
 
